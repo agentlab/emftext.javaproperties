@@ -161,7 +161,7 @@ public class PropertySetItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(JavapropertiesPackage.Literals.PROPERTY_SET__PROPERTIES,
-				 JavapropertiesFactory.eINSTANCE.createKeyValuePair()));
+				 JavapropertiesFactory.eINSTANCE.create(JavapropertiesPackage.Literals.KEY_VALUE_PAIR)));
 	}
 
 	/**

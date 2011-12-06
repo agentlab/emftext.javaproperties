@@ -17,6 +17,7 @@ package org.emftext.language.javaproperties.provider;
 import java.util.Collection;
 import java.util.List;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -34,10 +35,9 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.emftext.language.javaproperties.JavapropertiesPackage;
-import org.emftext.language.javaproperties.KeyValuePair;
 
 /**
- * This is the item provider adapter for a {@link org.emftext.language.javaproperties.KeyValuePair} object.
+ * This is the item provider adapter for a {@link java.util.Map.Entry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -186,8 +186,8 @@ public class KeyValuePairItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		KeyValuePair pair = ((KeyValuePair)object);
-		return pair.getKey() + "=" + pair.getValue();
+		Map.Entry<?, ?> keyValuePair = (Map.Entry<?, ?>)object;
+		return "" + keyValuePair.getKey() + " -> " + keyValuePair.getValue();
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class KeyValuePairItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(KeyValuePair.class)) {
+		switch (notification.getFeatureID(Map.Entry.class)) {
 			case JavapropertiesPackage.KEY_VALUE_PAIR__KEY:
 			case JavapropertiesPackage.KEY_VALUE_PAIR__VALUE:
 			case JavapropertiesPackage.KEY_VALUE_PAIR__WHITE_SPACE_BEFORE:

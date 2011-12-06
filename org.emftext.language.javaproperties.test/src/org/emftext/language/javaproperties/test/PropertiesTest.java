@@ -18,21 +18,24 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.emftext.language.javaproperties.KeyValuePair;
 import org.emftext.language.javaproperties.PropertySet;
+import org.emftext.language.javaproperties.impl.KeyValuePairImpl;
 import org.emftext.language.javaproperties.resource.properties.mopp.PropertiesMetaInformation;
 import org.emftext.language.javaproperties.resource.properties.mopp.PropertiesResourceFactory;
 import org.emftext.language.javaproperties.resource.properties.analysis.PropertiesVALUETokenResolver;
@@ -67,15 +70,16 @@ public class PropertiesTest extends TestCase {
 	}
 
 	private void compare(PropertySet ecoreProperties, Properties javaProperties) {
-		List<KeyValuePair> ecorePairs = ecoreProperties.getProperties();
+		EMap<String, String> ecorePairs = ecoreProperties.getProperties();
 		int ecoreCount = ecorePairs.size();
 		int javaCount = javaProperties.size();
 		int commonCount = Math.min(ecoreCount, javaCount);
 		Set<Object> javaKeys = javaProperties.keySet();
 		List<Object> javaKeyList = new ArrayList<Object>();
 		javaKeyList.addAll(javaKeys);
+		Iterator<Entry<String, String>> it = ecorePairs.iterator();
 		for (int i = 0; i < commonCount; i++) {
-			KeyValuePair ecorePair = ecorePairs.get(i);
+			KeyValuePairImpl ecorePair = (KeyValuePairImpl) it.next();
 			System.out.println("----------------------------------------------------------------");
 			String ecoreKey = ecorePair.getKey();
 			System.out.println("Ecore key:   '" + ecoreKey + "'");

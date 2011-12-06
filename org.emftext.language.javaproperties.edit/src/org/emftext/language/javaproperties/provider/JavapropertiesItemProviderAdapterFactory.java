@@ -106,7 +106,7 @@ public class JavapropertiesItemProviderAdapterFactory extends JavapropertiesAdap
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.emftext.language.javaproperties.KeyValuePair} instances.
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -114,7 +114,7 @@ public class JavapropertiesItemProviderAdapterFactory extends JavapropertiesAdap
 	protected KeyValuePairItemProvider keyValuePairItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.emftext.language.javaproperties.KeyValuePair}.
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
